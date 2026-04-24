@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish Bhakta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue: #a8d8f0;
+      --blue-dark: #5ab4e5;
+      --bg: #f0f8ff;
+      --text: #0a1628;
+      --muted: #5a7a99;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* subtle gradient bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 20%, #d4eeff 0%, #f0f8ff 50%, #e8f4fd 100%);
+      z-index: 0;
+    }
+
+    /* grid lines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(90,180,229,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,180,229,0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 60px 80px;
+    }
+
+    /* TOP SECTION */
+    .top {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      font-weight: 500;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.1s forwards;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(7rem, 22vw, 20rem);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    h1 .blue { color: var(--blue-dark); }
+
+    .tagline {
+      margin-top: 32px;
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.35s forwards;
+    }
+    .tagline strong { color: var(--text); font-weight: 500; }
+
+    /* BOTTOM BAR */
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(90,180,229,0.3);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.5s forwards;
+    }
+
+    .bottom-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .achievement {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid rgba(90,180,229,0.35);
+      border-radius: 16px;
+      padding: 14px 22px;
+      box-shadow: 0 4px 20px rgba(90,180,229,0.12);
+    }
+    .medal {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #ffd700, #ffb300);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .ach-text { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+    .ach-text strong { color: var(--text); font-weight: 500; display: block; }
+
+    .school {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .school strong { color: var(--text); font-weight: 500; display: block; }
+
+    .bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-link {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid rgba(90,180,229,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: transform 0.2s, border-color 0.2s, color 0.2s;
+      box-shadow: 0 2px 12px rgba(90,180,229,0.1);
+    }
+    .icon-link:hover { transform: translateY(-3px); border-color: var(--blue-dark); color: var(--blue-dark); }
+    .icon-link svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn:hover { transform: translateY(-3px); background: var(--blue-dark); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      main { padding: 40px 28px; }
+      h1 { font-size: clamp(5rem, 20vw, 8rem); }
+      .bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div class="eyebrow">krish.is &mdash; Round Rock, Texas</div>
+    <h1>KRISH<br><span class="blue">BHAKTA</span></h1>
+    <p class="tagline">
+      <strong>13-year-old creator and competitor.</strong> I go to GT school, run a YouTube channel, and build things that matter.
+    </p>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-left">
+      <div class="achievement">
+        <div class="medal">2</div>
+        <div class="ach-text">
+          <strong>2nd Place &mdash; Global AI Debates</strong>
+          Competed against students worldwide.
+        </div>
+      </div>
+      <div class="school">
+        <strong>GT School</strong>
+        Round Rock, TX
+      </div>
+    </div>
+
+    <div class="bottom-right">
+      <a href="https://www.youtube.com/@dasharookangaroo" target="_blank" class="icon-link" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      </a>
+      <a href="mailto:krishkbhakta@gmail.com" class="icon-link" title="Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@dasharookangaroo" target="_blank" class="btn">
+        Watch My Channel
+      </a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
